@@ -3,7 +3,7 @@ from enum import Enum
 from types import SimpleNamespace
 
 from crgm.model import Context, Goal, LeafTask, Refinement, \
-                        RefinementType as RType
+    RefinementType as RType
 
 
 # Here, Filling Station Advisor goal model is instantiated
@@ -26,20 +26,22 @@ class fsa_model(Enum):
     # goals
     g1 = Goal("Get Position",
               refinement=Refinement(
-                type=RType.OR,
-                children=[p1, p2]))
+                  type=RType.OR,
+                  children=[p1, p2]))
     # TODO issue 1 - instantiate othergoals
 
     # root goal
     g0 = Goal("Vehicle refueling is assisted",
               refinement=Refinement(
-                type=RType.AND,
-                children=[g1]))
+                  type=RType.AND,
+                  children=[g1]))
 
 
 def get_model():
     model_inst = SimpleNamespace()
     for enum_item in fsa_model:
-        setattr(enum_item.value, 'id', enum_item.name)  # set id in each element
-        setattr(model_inst, enum_item.name, enum_item.value)    # set in the model
+        # set id in each element
+        setattr(enum_item.value, 'id', enum_item.name)
+        setattr(model_inst, enum_item.name,
+                enum_item.value)    # set in the model
     return model_inst
