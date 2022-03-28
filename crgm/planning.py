@@ -19,6 +19,8 @@ def do_plan(initial_node: Node, context_state: List[Context]):
                     if sub_plan:
                         return sub_plan
         # TODO implement AND refinement
+        if refinement.type is RefinementType.AND:   # Without context
+            return refinement.children
 
 
 def is_applicable(node, context_state):
