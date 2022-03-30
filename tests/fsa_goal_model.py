@@ -32,7 +32,7 @@ class fsa_model(Enum):
 
     # TODO issue 1 - instantiate other leaf tasks
     p3 = LeafTask("Use data from onboard computer", restriction=c3)
-    p5 = LeafTask("Access fuel level and mileage", restriction=c5)
+    p5 = LeafTask("Access fuel level and mileage", restriction=c4)
     p6 = LeafTask("Calculate distance to empty")
     p8 = LeafTask("Get user input on tank capacity, mileage and fuel level")
     p9 = LeafTask("Track distance using GPS", restriction=c1)
@@ -71,6 +71,13 @@ class fsa_model(Enum):
                 refinement=Refinement(
                     type=RType.OR,
                     children=[p3, p4, p7]))
+
+    # G2 - AND
+    # g2 = Goal("Asses Distance to Empty",
+    #             refinement=Refinement(
+    #                 type=RType.AND,
+    #                 children=[p3, p4, p7]))
+    ################################################################################
 
     g3 = Goal("Recover information about nearby filling station",
                 refinement=Refinement(
